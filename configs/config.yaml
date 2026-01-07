@@ -1,0 +1,19 @@
+device: "/dev/video0"
+input_format: "yuyv422"
+video_codec: "mjpeg"
+timestamp_pos: "tr"
+
+recorder:
+  frame_rate: 15
+  video_size: "640x480"
+  retention: 24h
+  purge_interval: 30m
+  segment_seconds: 10s
+  output_dir: "/var/lib/gobelisk/segments"
+  filename_pattern: "segment-%Y-%m-%d_%H-%M-%S.mkv"
+
+streamer:
+  enabled: true
+  frame_rate: 10
+  video_size: "640x480"
+  #client_url: "udp://<client-ip-here>:5000?pkt_size=1316"

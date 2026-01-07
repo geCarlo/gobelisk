@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+# create user if missing
+if ! id -u gobelisk >/dev/null 2>&1; then
+  useradd -r -s /usr/sbin/nologin -G video gobelisk || true
+fi
+
+mkdir -p /etc/gobelisk /var/lib/gobelisk/segments /var/lib/gobelisk/uploaded
+
+# install default config only if it doesn't exist
+if [ ! -f /etc/gobelisk/config.yaml ]; then
+  cp /usr/share/gobelisk/config.yaml /etc/gobelisk/config.yaml
+fi
+
+systemctl daemon-reload || true
+systemctl enable gobelisk.service || true
+systemctl restart gobelisk.service || true
+
+exit 0

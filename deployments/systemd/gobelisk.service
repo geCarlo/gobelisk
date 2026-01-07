@@ -1,0 +1,26 @@
+[Unit]
+Description=gobelisk video recorder
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/gobelisk --config /etc/gobelisk/config.yaml
+User=gcarlo
+Group=video
+SupplementaryGroups=video
+NoNewPrivileges=true
+
+Restart=on-failure
+RestartSec=15
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+TimeoutStopSec=45
+KillMode=control-group
+
+MemoryMax=220M
+OOMPolicy=kill
+
+[Install]
+WantedBy=multi-user.target

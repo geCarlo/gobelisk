@@ -1,0 +1,8 @@
+Package: gobelisk
+Version: 0.1.0
+Section: video
+Priority: optional
+Architecture: armhf
+Maintainer: You <you@example.com>
+Depends: ffmpeg, systemd
+Description: Lightweight video recorder for Raspberry Pi (UVC -> segmented files)
